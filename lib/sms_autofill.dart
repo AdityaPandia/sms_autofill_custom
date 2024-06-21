@@ -533,7 +533,7 @@ class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
   }
 
   String _getCode() {
-    return widget.controller?.value.text;
+    return widget.controller?.value.text ?? "";
   }
 
   @override
