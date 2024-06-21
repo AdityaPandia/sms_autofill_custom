@@ -478,12 +478,12 @@ mixin CodeAutoFill {
 
 class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
     with CodeAutoFill {
-  // final TextEditingController _textController = TextEditingController(text: ''); //uncomment if autodetect issue
+  // final TextEditingController controller = TextEditingController(text: ''); //uncomment if autodetect issue
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controller, //remove this if autodetect issue
+      controller: widget.controller, //remove this if autodetect issue
       showCursor: widget.showCursor,
       cursorHeight: widget.cursorHeight,
       cursorColor: widget.cursorColor,
@@ -499,7 +499,7 @@ class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
       onSubmitted: widget.onCodeSubmitted,
       onChanged: widget.onCodeChanged,
       keyboardType: TextInputType.numberWithOptions(),
-      controller: _textController,
+      // controller: controller, //uncomment if autodetect issue
       obscureText: widget.obscureText,
     );
   }
@@ -514,8 +514,8 @@ class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
 
   @override
   void codeUpdated() {
-    if (_textController.text != code) {
-      _textController.value = TextEditingValue(text: code ?? '');
+    if (controller.text != code) {
+      controller.value = TextEditingValue(text: code ?? '');
       if (widget.onCodeChanged != null) {
         widget.onCodeChanged!(code ?? '');
       }
@@ -533,13 +533,13 @@ class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
   }
 
   String _getCode() {
-    return _textController.value.text;
+    return controller.value.text;
   }
 
   @override
   void dispose() {
     cancel();
-    _textController.dispose();
+    controller.dispose();
     unregisterListener();
     super.dispose();
   }
