@@ -421,6 +421,7 @@ class TextFieldPinAutoFill extends StatefulWidget {
 final double? cursorHeight;
 final Color? cursorColor;
 final bool? enableInteractiveSelection;
+final TextEditingController? controller; // remove this if autodetect issue
 
   const TextFieldPinAutoFill(
       {Key? key,
@@ -439,6 +440,7 @@ final bool? enableInteractiveSelection;
       this.cursorColor,
       this.cursorHeight,
       this.enableInteractiveSelection,
+      this.controller, //remove this if autodetect issue
       this.smsCodeRegexPattern})
       : super(key: key);
 
@@ -476,11 +478,12 @@ mixin CodeAutoFill {
 
 class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
     with CodeAutoFill {
-  final TextEditingController _textController = TextEditingController(text: '');
+  // final TextEditingController _textController = TextEditingController(text: ''); //uncomment if autodetect issue
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller, //remove this if autodetect issue
       showCursor: widget.showCursor,
       cursorHeight: widget.cursorHeight,
       cursorColor: widget.cursorColor,
