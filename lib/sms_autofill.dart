@@ -417,6 +417,10 @@ class TextFieldPinAutoFill extends StatefulWidget {
   final TextStyle? style;
   final String? smsCodeRegexPattern;
   final List<TextInputFormatter>? inputFormatters;
+  final bool? showCursor;
+final double? cursorHeight;
+final Color? cursorColor;
+final bool? enableInteractiveSelection;
 
   const TextFieldPinAutoFill(
       {Key? key,
@@ -431,6 +435,10 @@ class TextFieldPinAutoFill extends StatefulWidget {
       this.autoFocus = false,
       this.enabled = true,
       this.codeLength = 6,
+      this.showCursor,
+      this.cursorColor,
+      this.cursorHeight,
+      this.enableInteractiveSelection,
       this.smsCodeRegexPattern})
       : super(key: key);
 
@@ -473,6 +481,10 @@ class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
   @override
   Widget build(BuildContext context) {
     return TextField(
+      showCursor: widget.showCursor,
+      cursorHeight: widget.cursorHeight,
+      cursorColor: widget.cursorColor,
+      enableInteractiveSelection: widget.enableInteractiveSelection,
       enabled: widget.enabled,
       autofocus: widget.autoFocus,
       focusNode: widget.focusNode,
