@@ -514,8 +514,8 @@ class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
 
   @override
   void codeUpdated() {
-    if (widget.controller.text != code) {
-      widget.controller.value = TextEditingValue(text: code ?? '');
+    if (widget.controller?.text != code) {
+      widget.controller?.value = TextEditingValue(text: code ?? '');
       if (widget.onCodeChanged != null) {
         widget.onCodeChanged!(code ?? '');
       }
@@ -533,13 +533,13 @@ class _TextFieldPinAutoFillState extends State<TextFieldPinAutoFill>
   }
 
   String _getCode() {
-    return widget.controller.value.text;
+    return widget.controller?.value.text;
   }
 
   @override
   void dispose() {
     cancel();
-    widget.controller.dispose();
+    widget.controller?.dispose();
     unregisterListener();
     super.dispose();
   }
